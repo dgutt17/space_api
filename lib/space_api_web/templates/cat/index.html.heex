@@ -1,0 +1,24 @@
+<h1>Listing Cats</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for cat <- @cats do %>
+    <tr>
+
+      <td>
+        <span><%= link "Show", to: Routes.cat_path(@conn, :show, cat) %></span>
+        <span><%= link "Edit", to: Routes.cat_path(@conn, :edit, cat) %></span>
+        <span><%= link "Delete", to: Routes.cat_path(@conn, :delete, cat), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Cat", to: Routes.cat_path(@conn, :new) %></span>
