@@ -1,7 +1,7 @@
 let canvasWidth = 1000;
 let canvasHeight = 800;
 
-export var config = {
+var config = {
   type: Phaser.AUTO,
   width: canvasWidth,
   height: canvasHeight,
@@ -14,12 +14,12 @@ export var config = {
   },
   scene: {
       preload: require_preload,
-      create: create,
-      update: update
+      create: require_create,
+      update: require_update
   }
 };
 
-
+let game = new Phaser.Game(config);
 let setAsteroids;
 let asteroids;
 let score = 0;
@@ -49,121 +49,6 @@ let waitingText;
 let roomTagInstructionsText;
 let roomTagText;
 let powerupHash = {}
-
-let game = new Phaser.Game(config);
-
-function create (){
-  // let self = this;
-  // scene = this;
-  // self.asteroidArray = []
-  // self.ship = null
-  // self.shipContainer = null
-  // self.otherPlayers = {}
-  // scoreText = self.add.text(5, 5, 'Your Score: 0')
-  // scoreTextOther = self.add.text(5, 20, 'Opponent Score: 0')
-
-  // // Timer
-  // timerDisplay = self.add.text(500, 15, getTimerDisplay(0))
-  // timerDisplay.setOrigin(0.5)
-
-  // self.hiddenTimeStamp = 0;
-  // game.events.on('hidden', () => {
-  //   self.hiddenTimeStamp = performance.now();
-  // });
-
-  // game.events.on('visible', () => {
-  //   let elapsedTime = Math.floor((performance.now() - self.hiddenTimeStamp)/1000); //seconds
-  //   self.initialTime -= elapsedTime;
-  // })
-
-  // physics = self.physics
-
-  startBkgd = this.add.image(500, 400, 'space')
-  title = this.add.image(500, 200, 'title')
-  onePlayerOption = this.add.text(150, 570, 'Start 1 Player Game'.toUpperCase(), { fontSize: '32px' });
-  twoPlayerOption = this.add.text(150, 640, 'Start/Join 2 Player Game'.toUpperCase(), { fontSize: '32px' });
-  selector = this.add.sprite(110, selectorYPos1, 'ship').setScale(0.65)
-  startScreen = [startBkgd, title, onePlayerOption, twoPlayerOption, selector]
-
-  // Lasers
-  // this.laserGroup = new LaserGroup(self);
-
-  this.cursors = this.input.keyboard.createCursorKeys();
-}
-
-function update(time) {
-  if (!hasJoined) {
-    if (this.cursors.up.isDown) {
-      selector.y = selectorYPos1
-    }
-    if (this.cursors.down.isDown) {
-      selector.y = selectorYPos2
-    }
-    if (this.cursors.space.isDown) {
-      hasJoined = true
-      clearStartScreen()
-      const allowedPlayersCount = selector.y === selectorYPos1 ? 1 : 2
-      startSocketActions(this, allowedPlayersCount)
-    }
-  } 
-  // else if (hasGameStarted) {
-  //   if (this.ship) {
-  //     if (this.cursors.up.isDown) {
-  //       this.physics.velocityFromRotation(this.ship.rotation, 100, this.ship.body.acceleration);
-  //     }
-  //     else if (this.cursors.down.isDown) {
-  //       this.physics.velocityFromRotation(this.ship.rotation, -100, this.ship.body.acceleration);
-  //     }
-  //     else {
-  //       this.ship.setAcceleration(0);
-  //     }
-
-  //     if (this.cursors.left.isDown) {
-  //       this.ship.setAngularVelocity(-300);
-  //     }
-  //     else if (this.cursors.right.isDown) {
-  //       this.ship.setAngularVelocity(300);
-  //     }
-  //     else {
-  //       this.ship.setAngularVelocity(0);
-  //     }
-
-      // if (this.cursors.space.isDown && time > lastFired + 200 && this.ship.body.enable) {
-      //   this.laserGroup.fireLaser(this.ship.x, this.ship.y, this.ship.rotation);
-      //   lastFired = time;
-      // }
-
-  //     if (this.ship.x < 0) this.ship.x = canvasWidth
-  //     if (this.ship.x > canvasWidth) this.ship.x = 0
-  //     if (this.ship.y < 0) this.ship.y = canvasHeight
-  //     if (this.ship.y > canvasHeight) this.ship.y = 0
-
-  //     let x = this.ship.x
-  //     let y = this.ship.y
-  //     let r = this.ship.rotation
-
-  //     if (this.ship.oldPosition && (x !== this.ship.oldPosition.x || y !== this.ship.oldPosition.y || r !== this.ship.oldPosition.rotation)) {
-  //       this.socket.emit('playerMovement', { x: this.ship.x, y: this.ship.y, rotation: this.ship.rotation })
-  //     }
-
-  //     this.ship.oldPosition = {
-  //       x: this.ship.x,
-  //       y: this.ship.y,
-  //       rotation: this.ship.rotation
-  //     }
-  //   }
-  // }
-
-  // if(this.asteroids){
-  //   this.asteroids.children.entries.forEach((asteroid) => {
-  //     if (asteroid.x < 0) asteroid.x = canvasWidth
-  //     if (asteroid.x > canvasWidth) asteroid.x = 0
-  //     if (asteroid.y < 0) asteroid.y = canvasHeight
-  //     if (asteroid.y > canvasHeight) asteroid.y = 0
-  //   })
-  // }
-}
-
 // function addPlayer(self, playerInfo){
 //   const ship = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'ship', 0);
 //   ship.primary = playerInfo.primary
@@ -316,10 +201,6 @@ function update(time) {
 //     socket.emit('destroyPowerup', powerup.id, 'star_powerup')
 //     powerup.destroy()
 //   }
-// }
-
-// function clearStartScreen() {
-//   startScreen.forEach((pageElement) => pageElement.destroy())
 // }
 
 // function startSocketActions(self, allowedPlayersCount) {
