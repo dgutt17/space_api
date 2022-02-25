@@ -25,6 +25,7 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import preload from "../vendor/game/preload.js"
 import game from "../vendor/game"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
