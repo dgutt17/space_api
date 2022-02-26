@@ -1,15 +1,16 @@
-function update(time) {
-  if (!hasJoined) {
+
+export default function update(time) {
+  if (!this.hasJoined) {
     if (this.cursors.up.isDown) {
-      selector.y = selectorYPos1
+      this.selector.y = this.selectorYPos1
     }
     if (this.cursors.down.isDown) {
-      selector.y = selectorYPos2
+      this.selector.y = this.selectorYPos2
     }
     if (this.cursors.space.isDown) {
-      hasJoined = true
+      this.hasJoined = true
       clearStartScreen()
-      const allowedPlayersCount = selector.y === selectorYPos1 ? 1 : 2
+      const allowedPlayersCount = this.selector.y === selectorYPos1 ? 1 : 2
       // startSocketActions(this, allowedPlayersCount)
     }
   } 

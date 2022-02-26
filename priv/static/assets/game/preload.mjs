@@ -1,4 +1,4 @@
-function preload (){
+export default function preload (){
   this.load.image('space', '../images/start_bkgd.jpg')
   this.load.image('title', '../images/start_title.png')
   this.load.spritesheet('asteroids', '../images/asteroids.png', { frameWidth: 70, frameHeight: 65 })

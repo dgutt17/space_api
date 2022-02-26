@@ -1,4 +1,4 @@
-function create (){
+export default function create (){
   // let self = this;
   // scene = this;
   // self.asteroidArray = []
@@ -24,12 +24,15 @@ function create (){
 
   // physics = self.physics
 
-  startBkgd = this.add.image(500, 400, 'space')
-  title = this.add.image(500, 200, 'title')
-  onePlayerOption = this.add.text(150, 570, 'Start 1 Player Game'.toUpperCase(), { fontSize: '32px' });
-  twoPlayerOption = this.add.text(150, 640, 'Start/Join 2 Player Game'.toUpperCase(), { fontSize: '32px' });
-  selector = this.add.sprite(110, selectorYPos1, 'ship').setScale(0.65)
-  startScreen = [startBkgd, title, onePlayerOption, twoPlayerOption, selector]
+  this.selectorYPos1 = 583
+  this.selectorYPos2 = 653;
+  this.hasJoined = false
+  this.startBkgd = this.add.image(500, 400, 'space')
+  this.title = this.add.image(500, 200, 'title')
+  this.onePlayerOption = this.add.text(150, 570, 'Start 1 Player Game'.toUpperCase(), { fontSize: '32px' });
+  this.twoPlayerOption = this.add.text(150, 640, 'Start/Join 2 Player Game'.toUpperCase(), { fontSize: '32px' });
+  this.selector = this.add.sprite(110, this.selectorYPos1, 'ship').setScale(0.65)
+  this.startScreen = [this.startBkgd, this.title, this.onePlayerOption, this.twoPlayerOption, this.selector]
 
   // Lasers
   // this.laserGroup = new LaserGroup(self);
