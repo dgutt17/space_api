@@ -47,4 +47,8 @@ defmodule SpaceApiWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug SpaceApiWeb.Router
+
+  socket "/socket", SpaceApiWeb.PhaserSocket,
+      websocket: true,
+      longpoll: false
 end

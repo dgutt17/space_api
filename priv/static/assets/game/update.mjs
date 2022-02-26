@@ -1,3 +1,4 @@
+import startSocketActions from './startSocketActions.mjs'
 
 export default function update(time) {
   if (!this.hasJoined) {
@@ -11,7 +12,7 @@ export default function update(time) {
       this.hasJoined = true
       clearStartScreen(this.startScreen)
       const allowedPlayersCount = this.selector.y === this.selectorYPos1 ? 1 : 2
-      // startSocketActions(this, allowedPlayersCount)
+      startSocketActions(this, allowedPlayersCount)
     }
   } 
   // else if (hasGameStarted) {
