@@ -9,8 +9,8 @@ export default function update(time) {
     }
     if (this.cursors.space.isDown) {
       this.hasJoined = true
-      clearStartScreen()
-      const allowedPlayersCount = this.selector.y === selectorYPos1 ? 1 : 2
+      clearStartScreen(this.startScreen)
+      const allowedPlayersCount = this.selector.y === this.selectorYPos1 ? 1 : 2
       // startSocketActions(this, allowedPlayersCount)
     }
   } 
@@ -72,6 +72,6 @@ export default function update(time) {
   // }
 }
 
-function clearStartScreen() {
+function clearStartScreen(startScreen) {
   startScreen.forEach((pageElement) => pageElement.destroy())
 }
