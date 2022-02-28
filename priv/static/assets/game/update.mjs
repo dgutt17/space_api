@@ -2,6 +2,7 @@ import startSocketActions from './startSocketActions.mjs'
 
 export default function update(time) {
   if (!this.hasJoined) {
+    socket
     if (this.cursors.up.isDown) {
       this.selector.y = this.selectorYPos1
     }

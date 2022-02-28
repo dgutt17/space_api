@@ -1,6 +1,6 @@
 // import Socket from "../../../../assets/js/phaser_socket.js"
 // import phaser_socket from "/assets/js/phaser_socket.js"
-// import {Socket} from "phoenix"
+// import {Socket} from "./phoenix"
 
 // We use self to pass this so not to confuse with the this keyword in JS
 export default function startSocketActions(self, allowedPlayersCount) {
